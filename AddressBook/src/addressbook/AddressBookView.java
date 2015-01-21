@@ -1,5 +1,6 @@
 package addressbook;
-import se.chalmers.cse.dat215.lab1.Presenter;
+import javax.swing.ImageIcon;
+import se.chalmers.cse.dat215.lab1.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +17,9 @@ public class AddressBookView extends javax.swing.JFrame {
         
         this.presenter = new Presenter(contactList, firstNameTextPane,SurnameTextPane,phoneTextPane,emailTextPane,adressTextPane,postCodeTextPane,cityTextPane);
         this.presenter.init();
+        ImageIcon frameIcon = new ImageIcon( 
+                getClass().getResource("/addressbook/resources/frameicon32.gif"));
+        setIconImage(frameIcon.getImage());
     }
 
     /**
@@ -32,13 +36,13 @@ public class AddressBookView extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        firstNameLabel = new javax.swing.JLabel();
+        surnameLabel = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        adressLabel = new javax.swing.JLabel();
+        postCodeLabel = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
         firstNameTextPane = new javax.swing.JTextField();
         SurnameTextPane = new javax.swing.JTextField();
         phoneTextPane = new javax.swing.JTextField();
@@ -65,9 +69,11 @@ public class AddressBookView extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         newButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addressbook/resources/New24.gif"))); // NOI18N
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("addressbook/resources/AddressBookView"); // NOI18N
+        newButton.setToolTipText(bundle1.getString("newContactTooltip.text")); // NOI18N
         newButton.setFocusable(false);
         newButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        newButton.setName(""); // NOI18N
+        newButton.setName(bundle1.getString("newContactTooltip.text")); // NOI18N
         newButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,29 +83,134 @@ public class AddressBookView extends javax.swing.JFrame {
         jToolBar1.add(newButton);
 
         deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addressbook/resources/Delete24.gif"))); // NOI18N
+        deleteButton.setToolTipText(bundle1.getString("deleteContactToolip.text")); // NOI18N
         deleteButton.setFocusable(false);
         deleteButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         deleteButton.setName(""); // NOI18N
         deleteButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
         jToolBar1.add(deleteButton);
 
-        jLabel1.setText("First name:");
+        firstNameLabel.setText(bundle1.getString("firstNameLabel.text")); // NOI18N
+        firstNameLabel.setName(bundle1.getString("firstNameLabel.text")); // NOI18N
 
-        jLabel2.setText("Surname:");
+        surnameLabel.setText(bundle1.getString("lastNameLabel.text")); // NOI18N
+        surnameLabel.setName(bundle1.getString("lastNameLabel.text")); // NOI18N
 
-        jLabel3.setText("Phone:");
+        phoneLabel.setText(bundle1.getString("phoneLabel.text")); // NOI18N
+        phoneLabel.setName(bundle1.getString("phoneLabel.text")); // NOI18N
 
-        jLabel4.setText("Email:");
+        emailLabel.setText(bundle1.getString("emailLabel.text")); // NOI18N
+        emailLabel.setName(bundle1.getString("emailLabel.text")); // NOI18N
 
-        jLabel5.setText("Adress:");
+        adressLabel.setText(bundle1.getString("addressLabel.text")); // NOI18N
+        adressLabel.setName(bundle1.getString("addressLabel.text")); // NOI18N
 
-        jLabel6.setText("Post Code:");
+        postCodeLabel.setText(bundle1.getString("postcodeLabel.text")); // NOI18N
+        postCodeLabel.setName(bundle1.getString("postcodeLabel.text")); // NOI18N
 
-        jLabel7.setText("City:");
+        cityLabel.setText(bundle1.getString("cityLabel.text")); // NOI18N
+        cityLabel.setName(bundle1.getString("cityLabel.text")); // NOI18N
 
+        firstNameTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        firstNameTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        SurnameTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        SurnameTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        phoneTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        phoneTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        emailTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        emailTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        adressTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        adressTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        postCodeTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
         postCodeTextPane.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postCodeTextPaneActionPerformed(evt);
+                textFieldActionPerformed(evt);
+            }
+        });
+
+        cityTextPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldFocusLost(evt);
+            }
+        });
+        cityTextPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
             }
         });
 
@@ -110,55 +221,58 @@ public class AddressBookView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(postCodeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cityLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(adressLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(phoneLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(surnameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cityTextPane)
-                    .addComponent(SurnameTextPane)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(postCodeTextPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                    .addComponent(adressTextPane, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailTextPane, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phoneTextPane, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SurnameTextPane, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(firstNameTextPane)
-                    .addComponent(phoneTextPane)
-                    .addComponent(emailTextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                    .addComponent(adressTextPane, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                    .addComponent(postCodeTextPane)))
+                    .addComponent(cityTextPane))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(firstNameLabel)
                     .addComponent(firstNameTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(surnameLabel)
                     .addComponent(SurnameTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(phoneLabel)
                     .addComponent(phoneTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(emailLabel)
                     .addComponent(emailTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(adressLabel)
                     .addComponent(adressTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(postCodeLabel)
                     .addComponent(postCodeTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(cityLabel)
                     .addComponent(cityTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addGap(0, 92, Short.MAX_VALUE))
         );
+
+        firstNameLabel.getAccessibleContext().setAccessibleName("");
 
         jSplitPane1.setRightComponent(jPanel1);
 
@@ -167,19 +281,33 @@ public class AddressBookView extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        contactList.setMaximumSize(new java.awt.Dimension(70, 90));
+        contactList.setMinimumSize(new java.awt.Dimension(45, 90));
+        contactList.setPreferredSize(new java.awt.Dimension(45, 90));
+        contactList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                contactListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(contactList);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("addressbook/resources/AddressBookView"); // NOI18N
         fileMenu.setText(bundle1.getString("fileMenu.text")); // NOI18N
 
         newmenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addressbook/resources/New16.gif"))); // NOI18N
-        newmenuItem.setText("New Contact");
+        newmenuItem.setText(bundle1.getString("newContactMenuItem.text")); // NOI18N
+        newmenuItem.setName(bundle1.getString("newContactMenuItem.text")); // NOI18N
+        newmenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newmenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(newmenuItem);
 
         deleteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addressbook/resources/Delete16.gif"))); // NOI18N
-        deleteMenuItem.setText("Delete Contact");
+        deleteMenuItem.setText(bundle1.getString("deleteContactMenuItem.text")); // NOI18N
+        deleteMenuItem.setName(bundle1.getString("deleteContactMenuItem.text")); // NOI18N
         deleteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteMenuItemActionPerformed(evt);
@@ -189,6 +317,7 @@ public class AddressBookView extends javax.swing.JFrame {
         fileMenu.add(jSeparator1);
 
         exitMenuItem.setText(bundle1.getString("exitApplicationMenuItem.text")); // NOI18N
+        exitMenuItem.setName(bundle1.getString("exitApplicationMenuItem.text")); // NOI18N
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -216,9 +345,9 @@ public class AddressBookView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -241,38 +370,55 @@ public class AddressBookView extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        // TODO add your handling code here:
+        presenter.newContact();
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void deleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemActionPerformed
-        // TODO add your handling code here:
+        presenter.removeCurrentContact();
     }//GEN-LAST:event_deleteMenuItemActionPerformed
 
-    private void postCodeTextPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postCodeTextPaneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_postCodeTextPaneActionPerformed
+    private void contactListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_contactListValueChanged
+       presenter.contactsListChanged();
+    }//GEN-LAST:event_contactListValueChanged
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        presenter.removeCurrentContact();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void newmenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newmenuItemActionPerformed
+        presenter.newContact();
+    }//GEN-LAST:event_newmenuItemActionPerformed
+
+    private void textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldActionPerformed
+        presenter.textFieldActionPerformed(evt);
+    }//GEN-LAST:event_textFieldActionPerformed
+
+    private void textFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldFocusGained
+        presenter.textFieldFocusGained(evt);
+    }//GEN-LAST:event_textFieldFocusGained
+
+    private void textFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldFocusLost
+        presenter.textFieldFocusLost(evt);
+    }//GEN-LAST:event_textFieldFocusLost
 
     private Presenter presenter;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SurnameTextPane;
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JLabel adressLabel;
     private javax.swing.JTextField adressTextPane;
+    private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField cityTextPane;
     private javax.swing.JList contactList;
     private javax.swing.JButton deleteButton;
     private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextPane;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextPane;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -281,7 +427,10 @@ public class AddressBookView extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton newButton;
     private javax.swing.JMenuItem newmenuItem;
+    private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextPane;
+    private javax.swing.JLabel postCodeLabel;
     private javax.swing.JTextField postCodeTextPane;
+    private javax.swing.JLabel surnameLabel;
     // End of variables declaration//GEN-END:variables
 }
