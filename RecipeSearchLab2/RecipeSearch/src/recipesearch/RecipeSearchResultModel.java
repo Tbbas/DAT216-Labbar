@@ -38,8 +38,8 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
         recipeSearchResultItemModel4 = new recipesearch.RecipeSearchResultItemModel();
         recipeSearchResultItemModel5 = new recipesearch.RecipeSearchResultItemModel();
         recipeSearchResultItemModel6 = new recipesearch.RecipeSearchResultItemModel();
-        previousPageButton = new javax.swing.JButton();
-        nextPageButton = new javax.swing.JButton();
+       //previousPageButton = new javax.swing.JButton();
+       //nextPageButton = new javax.swing.JButton();
 
         recipeSearchResultItemModel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -53,17 +53,17 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
         recipeSearchResultItemModel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        previousPageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
-        previousPageButton.setText("Back");
-        previousPageButton.setMaximumSize(new java.awt.Dimension(25, 25));
-        previousPageButton.setMinimumSize(new java.awt.Dimension(25, 25));
-        previousPageButton.setPreferredSize(new java.awt.Dimension(25, 25));
-        previousPageButton.setSize(new java.awt.Dimension(25, 25));
-        previousPageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                previousPageButtonActionPerformed(evt);
-            }
-        });
+        //previousPageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
+        //previousPageButton.setText("Back");
+        //previousPageButton.setMaximumSize(new java.awt.Dimension(25, 25));
+        //previousPageButton.setMinimumSize(new java.awt.Dimension(25, 25));
+        //previousPageButton.setPreferredSize(new java.awt.Dimension(25, 25));
+        //previousPageButton.setSize(new java.awt.Dimension(25, 25));
+        //previousPageButton.addActionListener(new java.awt.event.ActionListener() {
+           // public void actionPerformed(java.awt.event.ActionEvent evt) {
+             //   previousPageButtonActionPerformed(evt);
+           // }
+        //});
 
         nextPageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/forward.png"))); // NOI18N
         nextPageButton.setText("Forward");
