@@ -5,6 +5,13 @@
  */
 package recipesearch;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import se.chalmers.ait.dat215.lab2.RecipeDatabase;
+import se.chalmers.ait.dat215.lab2.SearchFilter;
+import java.util.List;
+
 /**
  *
  * @author jonathan
@@ -16,8 +23,12 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
     /**
      * Creates new customizer RecipeSearchSearchModel
      */
-    public RecipeSearchSearchModel() {
+    public RecipeSearchSearchModel(RecipeSearchView view) {
         initComponents();
+        this.dataBase = RecipeDatabase.getSharedInstance();
+        this.view = view;   
+        
+        
     }
     
     public void setObject(Object bean) {
@@ -32,6 +43,9 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cuisineButonGroup = new javax.swing.ButtonGroup();
+        difficultyButtonGroup = new javax.swing.ButtonGroup();
+        mainIngredientButtonGroup = new javax.swing.ButtonGroup();
         mainIngredientRadioButton5 = new javax.swing.JRadioButton();
         mainIngredientRadioButton4 = new javax.swing.JRadioButton();
         mainIngredientRadioButton1 = new javax.swing.JRadioButton();
@@ -40,7 +54,6 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
         countryRadioButton2 = new javax.swing.JRadioButton();
         timeLabel = new javax.swing.JLabel();
         countryRadioButton3 = new javax.swing.JRadioButton();
-        difficultySlider = new javax.swing.JSlider();
         countryRadioButton1 = new javax.swing.JRadioButton();
         priceLabel = new javax.swing.JLabel();
         countryRadioButton6 = new javax.swing.JRadioButton();
@@ -55,51 +68,97 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
         searchButton = new javax.swing.JButton();
         priceTextField = new javax.swing.JFormattedTextField();
         timeTextField = new javax.swing.JFormattedTextField();
+        difficultyRadioButton1 = new javax.swing.JRadioButton();
+        difficultyRadioButton2 = new javax.swing.JRadioButton();
+        difficultyRadioButton3 = new javax.swing.JRadioButton();
 
+        mainIngredientButtonGroup.add(mainIngredientRadioButton5);
         mainIngredientRadioButton5.setText("Vegetariskt");
+        mainIngredientRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainIngredientChanged(evt);
+            }
+        });
 
+        mainIngredientButtonGroup.add(mainIngredientRadioButton4);
         mainIngredientRadioButton4.setText("Kyckling");
+        mainIngredientRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainIngredientChanged(evt);
+            }
+        });
 
+        mainIngredientButtonGroup.add(mainIngredientRadioButton1);
         mainIngredientRadioButton1.setSelected(true);
         mainIngredientRadioButton1.setText("Alla");
         mainIngredientRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainIngredientRadioButton1ActionPerformed(evt);
+                mainIngredientChanged(evt);
             }
         });
 
+        mainIngredientButtonGroup.add(mainIngredientRadioButton3);
         mainIngredientRadioButton3.setText("Fisk");
+        mainIngredientRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainIngredientChanged(evt);
+            }
+        });
 
+        mainIngredientButtonGroup.add(mainIngredientRadioButton2);
         mainIngredientRadioButton2.setText("Kött");
+        mainIngredientRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainIngredientChanged(evt);
+            }
+        });
 
+        cuisineButonGroup.add(countryRadioButton2);
         countryRadioButton2.setText("Sverige");
+        countryRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         timeLabel.setText("Tid");
 
+        cuisineButonGroup.add(countryRadioButton3);
         countryRadioButton3.setText("Grekland");
-
-        difficultySlider.setMajorTickSpacing(50);
-        difficultySlider.setPaintTicks(true);
-        difficultySlider.setSnapToTicks(true);
-        difficultySlider.setToolTipText("");
-        difficultySlider.setValue(0);
-        difficultySlider.setValueIsAdjusting(true);
-        difficultySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                difficultySliderStateChanged(evt);
+        countryRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
             }
         });
 
+        cuisineButonGroup.add(countryRadioButton1);
         countryRadioButton1.setSelected(true);
         countryRadioButton1.setText("Alla");
+        countryRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         priceLabel.setText("Pris");
 
+        cuisineButonGroup.add(countryRadioButton6);
         countryRadioButton6.setText("Afrika");
+        countryRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         difficultyLabel.setText("Svårighetsgrad");
 
+        cuisineButonGroup.add(countryRadioButton4);
         countryRadioButton4.setText("Indien");
+        countryRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         priceSlider.setMajorTickSpacing(10);
         priceSlider.setMaximum(150);
@@ -114,7 +173,13 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
             }
         });
 
+        cuisineButonGroup.add(countryRadioButton5);
         countryRadioButton5.setText("Asien");
+        countryRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         timeSlider.setMajorTickSpacing(10);
         timeSlider.setMaximum(150);
@@ -132,7 +197,13 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
 
         mainIngredientLabel.setText("Huvudingrediens");
 
+        cuisineButonGroup.add(countryRadioButton7);
         countryRadioButton7.setText("Frankrike");
+        countryRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineChanged(evt);
+            }
+        });
 
         sourceCountryLabel.setText("Ursprungsland");
 
@@ -161,6 +232,30 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
             }
         });
 
+        difficultyButtonGroup.add(difficultyRadioButton1);
+        difficultyRadioButton1.setText("Lätt");
+        difficultyRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                difficultyChanged(evt);
+            }
+        });
+
+        difficultyButtonGroup.add(difficultyRadioButton2);
+        difficultyRadioButton2.setText("Mellan");
+        difficultyRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                difficultyChanged(evt);
+            }
+        });
+
+        difficultyButtonGroup.add(difficultyRadioButton3);
+        difficultyRadioButton3.setText("Svår");
+        difficultyRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                difficultyChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,20 +266,26 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
                         .addGap(81, 81, 81)
                         .addComponent(priceLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(difficultyLabel))
+                        .addGap(83, 83, 83)
+                        .addComponent(timeLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(timeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(difficultySlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(timeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(timeLabel)))
+                        .addGap(54, 54, 54)
+                        .addComponent(difficultyLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(difficultyRadioButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(difficultyRadioButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(difficultyRadioButton3)))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -225,10 +326,6 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(difficultyLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(difficultySlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,46 +359,104 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
                         .addComponent(mainIngredientRadioButton5)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(countryRadioButton6)
+                            .addComponent(difficultyLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(countryRadioButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(countryRadioButton7))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(difficultyRadioButton1)
+                                .addComponent(difficultyRadioButton2)
+                                .addComponent(difficultyRadioButton3))
+                            .addComponent(countryRadioButton7))
+                        .addGap(0, 239, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(searchButton)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mainIngredientRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainIngredientRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mainIngredientRadioButton1ActionPerformed
-
-    private void difficultySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_difficultySliderStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_difficultySliderStateChanged
-
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
        priceTextField.setText(priceSlider.getValue() + "");
+       this.maxPrice = priceSlider.getValue();
     }//GEN-LAST:event_priceSliderStateChanged
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
         timeTextField.setText(timeSlider.getValue() + "");
+        this.maxTime = timeSlider.getValue();
     }//GEN-LAST:event_timeSliderStateChanged
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+       try {
+        List<se.chalmers.ait.dat215.lab2.Recipe> result = dataBase.search(
+                new SearchFilter(this.difficulty, this.maxTime, this.cousine, 
+                        this.maxPrice, this.mainIngredient));
+        view.setSearchResults(new RecipeSearchResultModel(result));
+       } catch(NullPointerException e) {
+           System.out.println("ERROR: COULD NOT FIND RECIPIES");
+           System.exit(1);
+       }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed
-        // TODO add your handling code here:
+        try {
+           this.priceSlider.setValue(Integer.parseInt(priceTextField.getText()));
+        } catch(NumberFormatException e) {
+            priceTextField.setText(Integer.toString(priceSlider.getValue()));
+        }
     }//GEN-LAST:event_priceTextFieldActionPerformed
 
     private void timeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeTextFieldActionPerformed
-        // TODO add your handling code here:
+        try {
+           this.timeSlider.setValue(Integer.parseInt(timeTextField.getText()));
+        } catch(NumberFormatException e) {
+            timeTextField.setText(Integer.toString(timeSlider.getValue()));
+        }
     }//GEN-LAST:event_timeTextFieldActionPerformed
 
+    private void cuisineChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuisineChanged
+        JRadioButton temp =(JRadioButton)evt.getSource(); 
+        this.cousine = temp.getText();
+        disableRadioButtons(temp, cuisineButonGroup);
+        
+        
+    }//GEN-LAST:event_cuisineChanged
 
+    private void mainIngredientChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainIngredientChanged
+        JRadioButton temp =(JRadioButton)evt.getSource(); 
+        this.mainIngredient = temp.getText();
+        disableRadioButtons(temp, mainIngredientButtonGroup);
+    }//GEN-LAST:event_mainIngredientChanged
+
+    private void difficultyChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyChanged
+         JRadioButton temp =(JRadioButton)evt.getSource(); 
+        this.difficulty = temp.getText();
+        disableRadioButtons(temp, difficultyButtonGroup);
+    }//GEN-LAST:event_difficultyChanged
+
+    //method for disabling all other radiobuttons in a group
+    //except the last one to be checked.
+    
+    private void disableRadioButtons(JRadioButton lastSelected, ButtonGroup btnGroup){
+            btnGroup.clearSelection();
+            lastSelected.setSelected(true);
+        
+           }
+    
+    
+    //Variables for the values of the fields   
+    private int maxTime;
+    private int maxPrice;
+    private String cousine;
+    private String difficulty;
+    private String mainIngredient;
+    RecipeDatabase dataBase;
+    RecipeSearchView view;
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton countryRadioButton1;
     private javax.swing.JRadioButton countryRadioButton2;
@@ -310,8 +465,13 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
     private javax.swing.JRadioButton countryRadioButton5;
     private javax.swing.JRadioButton countryRadioButton6;
     private javax.swing.JRadioButton countryRadioButton7;
+    private javax.swing.ButtonGroup cuisineButonGroup;
+    private javax.swing.ButtonGroup difficultyButtonGroup;
     private javax.swing.JLabel difficultyLabel;
-    private javax.swing.JSlider difficultySlider;
+    private javax.swing.JRadioButton difficultyRadioButton1;
+    private javax.swing.JRadioButton difficultyRadioButton2;
+    private javax.swing.JRadioButton difficultyRadioButton3;
+    private javax.swing.ButtonGroup mainIngredientButtonGroup;
     private javax.swing.JLabel mainIngredientLabel;
     private javax.swing.JRadioButton mainIngredientRadioButton1;
     private javax.swing.JRadioButton mainIngredientRadioButton2;

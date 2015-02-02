@@ -15,7 +15,7 @@ public class Test extends JFrame {
     
     public Test() {
         setSize(500,500);
-        add(new RecipeSearchSearchModel()).setVisible(true);
+        add(new RecipeSearchResultModel()).setVisible(true);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

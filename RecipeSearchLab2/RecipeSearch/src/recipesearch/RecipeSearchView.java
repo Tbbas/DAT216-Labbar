@@ -1,7 +1,5 @@
 package recipesearch;
 
-import javax.swing.JPanel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +7,14 @@ import javax.swing.JPanel;
  */
 
 public class RecipeSearchView extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form ExampleApplicationView
      */
     public RecipeSearchView() {
         initComponents();
+        this.search = new RecipeSearchSearchModel(this);
+        this.cardPanel.add(search, "Search");
     }
 
     /**
@@ -29,9 +29,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
         countryButtonGroup = new javax.swing.ButtonGroup();
         mainIngredientGroup = new javax.swing.ButtonGroup();
         navigationToolBar = new javax.swing.JToolBar();
-        homeButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
-        forwardButton = new javax.swing.JButton();
+        cardPanel = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -44,54 +42,6 @@ public class RecipeSearchView extends javax.swing.JFrame {
         setName("applicationFrame"); // NOI18N
 
         navigationToolBar.setRollover(true);
-
-        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/home.png"))); // NOI18N
-        homeButton.setText("jButton1");
-        homeButton.setFocusable(false);
-        homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        homeButton.setMaximumSize(new java.awt.Dimension(20, 20));
-        homeButton.setMinimumSize(new java.awt.Dimension(20, 20));
-        homeButton.setPreferredSize(new java.awt.Dimension(20, 20));
-        homeButton.setSize(new java.awt.Dimension(20, 20));
-        homeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeButtonActionPerformed(evt);
-            }
-        });
-        navigationToolBar.add(homeButton);
-
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
-        backButton.setText("jButton1");
-        backButton.setFocusable(false);
-        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        backButton.setMaximumSize(new java.awt.Dimension(20, 20));
-        backButton.setMinimumSize(new java.awt.Dimension(20, 20));
-        backButton.setPreferredSize(new java.awt.Dimension(20, 20));
-        backButton.setSize(new java.awt.Dimension(20, 20));
-        backButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-        navigationToolBar.add(backButton);
-
-        forwardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/forward.png"))); // NOI18N
-        forwardButton.setText("jButton1");
-        forwardButton.setFocusable(false);
-        forwardButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        forwardButton.setMaximumSize(new java.awt.Dimension(20, 20));
-        forwardButton.setMinimumSize(new java.awt.Dimension(20, 20));
-        forwardButton.setPreferredSize(new java.awt.Dimension(20, 20));
-        forwardButton.setSize(new java.awt.Dimension(20, 20));
-        forwardButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        forwardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                forwardButtonActionPerformed(evt);
-            }
-        });
-        navigationToolBar.add(forwardButton);
 
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("recipesearch/resources/RecipeSearchView"); // NOI18N
         fileMenu.setText(bundle1.getString("fileMenu.text")); // NOI18N
@@ -127,12 +77,16 @@ public class RecipeSearchView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(441, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cardPanel))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,28 +100,34 @@ public class RecipeSearchView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-       //TODO add your handling code here:
-    }//GEN-LAST:event_homeButtonActionPerformed
+    private RecipeSearchSearchModel search;
+    private RecipeSearchResultModel result;
+    private RecipeSearchRecipeModel recipe;
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backButtonActionPerformed
-
-    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forwardButtonActionPerformed
-
+    
+    
+    
+    //methods for setting panels
+    public void setSearchResults(RecipeSearchResultModel result) {
+        if(this.result == null) {
+            this.add(this.result,"Result");
+        }
+        
+        this.result = result;   
+        
+    }
+    
+   
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton backButton;
+    private javax.swing.JTabbedPane cardPanel;
     private javax.swing.ButtonGroup countryButtonGroup;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JButton forwardButton;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton homeButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.ButtonGroup mainIngredientGroup;
     private javax.swing.JToolBar navigationToolBar;

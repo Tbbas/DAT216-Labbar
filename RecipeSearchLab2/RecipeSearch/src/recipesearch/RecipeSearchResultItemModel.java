@@ -10,15 +10,18 @@ package recipesearch;
  *
  * @author jonathan
  */
-public class RecipeSearchResultItemModel extends javax.swing.JPanel implements java.beans.Customizer {
+public class RecipeSearchResultItemModel extends javax.swing.JButton implements java.beans.Customizer {
     
     private Object bean;
 
     /**
      * Creates new customizer RecipeSearchResultItemModel
      */
-    public RecipeSearchResultItemModel() {
+    public RecipeSearchResultItemModel(se.chalmers.ait.dat215.lab2.Recipe recipe) {
         initComponents();
+        this.nameLabel.setText(recipe.getName());
+        
+        
     }
     
     public void setObject(Object bean) {
@@ -37,14 +40,14 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel implements j
         nameLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        portionLabel = new javax.swing.JLabel();
-        timeLabel = new javax.swing.JLabel();
-        priceLabel = new javax.swing.JLabel();
+        portionLabelText = new javax.swing.JLabel();
+        timeLabelText = new javax.swing.JLabel();
+        priceLabelText = new javax.swing.JLabel();
+        difficultyLabelText = new javax.swing.JLabel();
         difficultyLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        portionLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 153, 153));
 
@@ -54,21 +57,21 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel implements j
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        portionLabel.setText("Portioner:");
+        portionLabelText.setText("Portioner:");
 
-        timeLabel.setText("Tid:");
+        timeLabelText.setText("Tid:");
 
-        priceLabel.setText("Pris:");
+        priceLabelText.setText("Pris:");
 
-        difficultyLabel.setText("Svårighetsgrad:");
+        difficultyLabelText.setText("Svårighetsgrad:");
 
-        jLabel1.setText("jLabel1");
+        difficultyLabel.setText("jLabel1");
 
-        jLabel2.setText("jLabel2");
+        priceLabel.setText("jLabel2");
 
-        jLabel3.setText("jLabel3");
+        timeLabel.setText("jLabel3");
 
-        jLabel4.setText("jLabel4");
+        portionLabel.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,25 +84,25 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel implements j
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(portionLabel)
+                        .addComponent(portionLabelText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(portionLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(difficultyLabel)
+                                .addComponent(difficultyLabelText)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
+                                .addComponent(difficultyLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(priceLabel)
-                                    .addComponent(timeLabel))
+                                    .addComponent(priceLabelText)
+                                    .addComponent(timeLabelText))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))))))
+                                    .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(timeLabel, javax.swing.GroupLayout.Alignment.TRAILING)))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,23 +112,23 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel implements j
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(nameLabel)
-                                .addComponent(portionLabel))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(portionLabelText))
+                            .addComponent(portionLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 7, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
+                                    .addComponent(timeLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(timeLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(priceLabel)
-                                    .addComponent(jLabel2))
+                                    .addComponent(priceLabelText)
+                                    .addComponent(priceLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(difficultyLabel)
-                                    .addComponent(jLabel1)))
+                                    .addComponent(difficultyLabelText)
+                                    .addComponent(difficultyLabel)))
                             .addComponent(jScrollPane1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -137,16 +140,16 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel implements j
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel difficultyLabel;
+    private javax.swing.JLabel difficultyLabelText;
     private javax.swing.JLabel iconLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel portionLabel;
+    private javax.swing.JLabel portionLabelText;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JLabel priceLabelText;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel timeLabelText;
     // End of variables declaration//GEN-END:variables
 }

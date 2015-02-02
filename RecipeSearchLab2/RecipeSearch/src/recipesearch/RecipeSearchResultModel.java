@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package recipesearch;
+import java.util.List;
 
 /**
  *
@@ -16,12 +17,23 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
     /**
      * Creates new customizer RecipeSearchResultModel
      */
-    public RecipeSearchResultModel() {
+    public RecipeSearchResultModel(List<se.chalmers.ait.dat215.lab2.Recipe> recipes) {
         initComponents();
+        addRecipes(recipes);
+        
+        
+        
     }
     
     public void setObject(Object bean) {
         this.bean = bean;
+    }
+    
+    
+    private void addRecipes(List<se.chalmers.ait.dat215.lab2.Recipe> recipes) {
+        for(int i=0;i<5;i++){
+            this.add(new RecipeSearchResultItemModel(recipes.get(i)));
+        }
     }
 
     /**
@@ -32,110 +44,48 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        recipeSearchResultItemModel1 = new recipesearch.RecipeSearchResultItemModel();
-        recipeSearchResultItemModel2 = new recipesearch.RecipeSearchResultItemModel();
-        recipeSearchResultItemModel3 = new recipesearch.RecipeSearchResultItemModel();
-        recipeSearchResultItemModel4 = new recipesearch.RecipeSearchResultItemModel();
-        recipeSearchResultItemModel5 = new recipesearch.RecipeSearchResultItemModel();
-        recipeSearchResultItemModel6 = new recipesearch.RecipeSearchResultItemModel();
-       //previousPageButton = new javax.swing.JButton();
-       //nextPageButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        resultPane = new javax.swing.JTabbedPane();
+        previousButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
-        recipeSearchResultItemModel1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("jButton1");
 
-        recipeSearchResultItemModel2.setBackground(new java.awt.Color(204, 204, 204));
+        previousButton.setText("jButton1");
 
-        recipeSearchResultItemModel3.setBackground(new java.awt.Color(204, 204, 204));
-
-        recipeSearchResultItemModel4.setBackground(new java.awt.Color(204, 204, 204));
-
-        recipeSearchResultItemModel5.setBackground(new java.awt.Color(204, 204, 204));
-
-        recipeSearchResultItemModel6.setBackground(new java.awt.Color(204, 204, 204));
-
-        //previousPageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
-        //previousPageButton.setText("Back");
-        //previousPageButton.setMaximumSize(new java.awt.Dimension(25, 25));
-        //previousPageButton.setMinimumSize(new java.awt.Dimension(25, 25));
-        //previousPageButton.setPreferredSize(new java.awt.Dimension(25, 25));
-        //previousPageButton.setSize(new java.awt.Dimension(25, 25));
-        //previousPageButton.addActionListener(new java.awt.event.ActionListener() {
-           // public void actionPerformed(java.awt.event.ActionEvent evt) {
-             //   previousPageButtonActionPerformed(evt);
-           // }
-        //});
-
-        nextPageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/forward.png"))); // NOI18N
-        nextPageButton.setText("Forward");
-        nextPageButton.setMaximumSize(new java.awt.Dimension(25, 25));
-        nextPageButton.setMinimumSize(new java.awt.Dimension(25, 25));
-        nextPageButton.setPreferredSize(new java.awt.Dimension(25, 25));
-        nextPageButton.setSize(new java.awt.Dimension(25, 25));
+        nextButton.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(previousPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(recipeSearchResultItemModel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipeSearchResultItemModel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipeSearchResultItemModel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(recipeSearchResultItemModel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(recipeSearchResultItemModel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(recipeSearchResultItemModel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(recipeSearchResultItemModel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipeSearchResultItemModel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(recipeSearchResultItemModel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(recipeSearchResultItemModel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(nextPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(previousPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(recipeSearchResultItemModel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipeSearchResultItemModel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(124, 124, 124))))
+            .addComponent(resultPane)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void previousPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_previousPageButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton nextPageButton;
-    private javax.swing.JButton previousPageButton;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel1;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel2;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel3;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel4;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel5;
-    private recipesearch.RecipeSearchResultItemModel recipeSearchResultItemModel6;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JButton previousButton;
+    private javax.swing.JTabbedPane resultPane;
     // End of variables declaration//GEN-END:variables
 }
