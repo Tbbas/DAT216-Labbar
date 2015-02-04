@@ -5,6 +5,7 @@
  */
 package recipesearch;
 
+import java.awt.Font;
 import se.chalmers.ait.dat215.lab2.*;
 
 /**
@@ -23,6 +24,10 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
     public RecipeSearchRecipeModel(Recipe recipe) {
         this.recipe = recipe;
         initComponents();
+        this.imageLabel.setIcon(recipe.getImage());
+        this.ingredientTextArea.setText(recipe.getIngredients().toString());
+        this.ingredientTextArea.setLineWrap(true);
+        this.descriptionTextPane.setLineWrap(true);
     }
     
     public void setObject(Object bean) {
@@ -52,6 +57,10 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
         descriptionPane = new javax.swing.JScrollPane();
         descriptionTextPane = new javax.swing.JTextArea();
         ingredientsList = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ingredientTextArea = new javax.swing.JTextArea();
+        imageLabel = new javax.swing.JLabel();
 
         nameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -84,28 +93,29 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
         infoPanelLayout.setHorizontalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoPanelLayout.createSequentialGroup()
-                        .addComponent(portionsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nbrOfPortionsLabel))
+                        .addContainerGap()
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(infoPanelLayout.createSequentialGroup()
+                                    .addGap(58, 58, 58)
+                                    .addComponent(timeLabel))
+                                .addComponent(portionsLabel)
+                                .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(difficultyLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(recipeDifficultyLabel)
+                            .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(recipeTimeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(recipePriceLabel)
+                                .addComponent(recipeCouisineLabel)
+                                .addComponent(nbrOfPortionsLabel))))
                     .addGroup(infoPanelLayout.createSequentialGroup()
-                        .addComponent(difficultyLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(recipeDifficultyLabel))
-                    .addGroup(infoPanelLayout.createSequentialGroup()
-                        .addComponent(timeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(recipeTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(infoPanelLayout.createSequentialGroup()
-                        .addComponent(priceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(recipePriceLabel))
-                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
                         .addComponent(cuisineLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(recipeCouisineLabel)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         infoPanelLayout.setVerticalGroup(
@@ -139,15 +149,32 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
         descriptionTextPane.setText(recipe.getDescription());
         descriptionPane.setViewportView(descriptionTextPane);
 
+        jLabel1.setText("Ingredienser");
+
+        ingredientTextArea.setColumns(20);
+        ingredientTextArea.setRows(5);
+        jScrollPane1.setViewportView(ingredientTextArea);
+
         javax.swing.GroupLayout ingredientsListLayout = new javax.swing.GroupLayout(ingredientsList);
         ingredientsList.setLayout(ingredientsListLayout);
         ingredientsListLayout.setHorizontalGroup(
             ingredientsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGroup(ingredientsListLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(ingredientsListLayout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         ingredientsListLayout.setVerticalGroup(
             ingredientsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+            .addGroup(ingredientsListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,8 +183,12 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(descriptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descriptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ingredientsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -168,11 +199,16 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
             .addGroup(layout.createSequentialGroup()
                 .addComponent(nameLabel)
                 .addGap(18, 18, 18)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionPane)
-                    .addComponent(ingredientsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ingredientsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(descriptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,8 +218,12 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
     private javax.swing.JScrollPane descriptionPane;
     private javax.swing.JTextArea descriptionTextPane;
     private javax.swing.JLabel difficultyLabel;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel infoPanel;
+    private javax.swing.JTextArea ingredientTextArea;
     private javax.swing.JPanel ingredientsList;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nbrOfPortionsLabel;
     private javax.swing.JLabel portionsLabel;

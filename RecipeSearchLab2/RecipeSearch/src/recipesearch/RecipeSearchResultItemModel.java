@@ -29,7 +29,7 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
     }
     
     public void setRecipe(Recipe recipe) {
-        
+        this.recipe = recipe;
         this.nameLabel.setText(recipe.getName());
         this.portionLabel.setText(Integer.toString(recipe.getServings()));
         this.timeLabel.setText(Integer.toString(recipe.getTime()));
@@ -37,6 +37,10 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
         this.difficultyLabel.setText(recipe.getDifficulty());
         this.iconLabel.setIcon(recipe.getImage()); 
         
+    }
+    
+    public Recipe getRecipe() {
+        return this.recipe;
     }
     
 
@@ -58,7 +62,6 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
         priceLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         portionLabel = new javax.swing.JLabel();
-        showDetails = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
 
@@ -82,13 +85,6 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
 
         portionLabel.setText("jLabel4");
 
-        showDetails.setText("Se detaljer");
-        showDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seeDetailedRecipe(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,14 +103,11 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(difficultyLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(timeLabel)
-                                    .addComponent(portionLabel)
-                                    .addComponent(priceLabel))
-                                .addGap(18, 18, 18)
-                                .addComponent(showDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(timeLabel)
+                                .addComponent(portionLabel)
+                                .addComponent(priceLabel)))))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,28 +121,23 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(portionLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(timeLabel)
-                                    .addComponent(timeLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(priceLabel)
-                                    .addComponent(priceLabelText)))
-                            .addComponent(showDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(portionLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(timeLabel)
+                            .addComponent(timeLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceLabel)
+                            .addComponent(priceLabelText))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(difficultyLabelText)
                     .addComponent(difficultyLabel)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void seeDetailedRecipe(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeDetailedRecipe
-        new ActionEvent(this, WIDTH, TOOL_TIP_TEXT_KEY);
-    }//GEN-LAST:event_seeDetailedRecipe
-
+    
+    private Recipe recipe;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel difficultyLabel;
@@ -160,7 +148,6 @@ public class RecipeSearchResultItemModel extends javax.swing.JPanel{
     private javax.swing.JLabel portionLabelText;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel priceLabelText;
-    private javax.swing.JButton showDetails;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JLabel timeLabelText;
     // End of variables declaration//GEN-END:variables

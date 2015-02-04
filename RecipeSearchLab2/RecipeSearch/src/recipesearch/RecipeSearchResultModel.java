@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package recipesearch;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import se.chalmers.ait.dat215.lab2.Recipe;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -20,8 +25,9 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
      * Creates new customizer RecipeSearchResultModel
      * @param  A list of recepies
      */
-    public RecipeSearchResultModel(List<Recipe> recipes) {
+    public RecipeSearchResultModel(List<Recipe> recipes, RecipeSearchView view) {
         initComponents();
+        this.view = view;
         this.recipeBoxes = new ArrayList<RecipeSearchResultItemModel>();
         addRecipeBoxesToList();
         this.indexOfCurrentRecipe = 0; 
@@ -134,6 +140,99 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
             }
         });
 
+        recipeItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+        });
+
+        recipeItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,7 +280,25 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
         recipeItem1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                recipeItem1MouseClicked(evt);
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
+            }
+        });
+
+        recipeItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItemMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recipeItemEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recipeItemExited(evt);
             }
         });
 
@@ -232,15 +349,28 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
         CalculateNextRecipes();
     }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void recipeItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItem1MouseClicked
-        
-    }//GEN-LAST:event_recipeItem1MouseClicked
+    private void recipeItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItemMouseClicked
+        Recipe r = ((RecipeSearchResultItemModel)evt.getSource()).getRecipe();
+        RecipeSearchRecipeModel rModel = new RecipeSearchRecipeModel(r);
+        view.setDetailedRecipe(rModel);
+    }//GEN-LAST:event_recipeItemMouseClicked
+
+    private void recipeItemEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItemEntered
+        ((RecipeSearchResultItemModel)evt.getSource()).setBorder(new LineBorder(Color.black));
+    }//GEN-LAST:event_recipeItemEntered
+
+    private void recipeItemExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItemExited
+        ((RecipeSearchResultItemModel)evt.getSource()).setBorder(null);
+    }//GEN-LAST:event_recipeItemExited
 
     private List<RecipeSearchResultItemModel> recipeBoxes;
     private List<Recipe> recipes;
     private int indexOfCurrentRecipe;
     private boolean hasNextRecipes;
     private boolean hasPreviousRecipes;
+    private RecipeSearchView view;
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;

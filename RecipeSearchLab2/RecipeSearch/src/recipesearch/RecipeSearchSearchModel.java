@@ -388,7 +388,7 @@ public class RecipeSearchSearchModel extends javax.swing.JPanel implements java.
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
      List<Recipe> result = RecipeDatabase.getSharedInstance().search(new SearchFilter(this.difficulty,this.maxTime,this.cousine,this.maxPrice,this.mainIngredient));
-     view.setSearchResults(new RecipeSearchResultModel(result));
+     view.setSearchResults(new RecipeSearchResultModel(result,view));
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed

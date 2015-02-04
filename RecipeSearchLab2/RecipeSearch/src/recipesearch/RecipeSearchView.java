@@ -1,6 +1,7 @@
 package recipesearch;
 
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -153,22 +154,35 @@ public class RecipeSearchView extends javax.swing.JFrame {
        c1.first(cardPanel);
     }//GEN-LAST:event_homeButtonActionPerformed
 
-    private RecipeSearchSearchModel search;
-    private RecipeSearchResultModel result;
-    private RecipeSearchRecipeModel recipe;
+
 
     
     
     
     //methods for setting panels
     public void setSearchResults(RecipeSearchResultModel result) {
-        this.cardPanel.remove(result);
-        this.result = null;
+        if(this.result == null) {
+            this.result = result;
+            this.cardPanel.add(this.result,"Result");           
+        }
         this.result = result;
-        this.cardPanel.add(result);
-        ((CardLayout)cardPanel.getLayout()).next(cardPanel);
+        revalidate();
+        ((CardLayout)cardPanel.getLayout()).show(cardPanel, "Result");
+        
         
     }
+    
+    public void setDetailedRecipe(RecipeSearchRecipeModel r) {
+        this.recipe = r;
+        this.cardPanel.add(recipe);
+        ((CardLayout)cardPanel.getLayout()).next(cardPanel);
+    }
+    
+    
+   //Panels within the program
+    private JPanel search;
+    private JPanel result;
+    private JPanel recipe;
     
    
     
