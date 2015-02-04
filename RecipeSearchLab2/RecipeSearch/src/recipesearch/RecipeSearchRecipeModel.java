@@ -49,7 +49,6 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
         recipePriceLabel = new javax.swing.JLabel();
         recipeCouisineLabel = new javax.swing.JLabel();
         recipeDifficultyLabel = new javax.swing.JLabel();
-        imageLabel = new javax.swing.JLabel();
         descriptionPane = new javax.swing.JScrollPane();
         descriptionTextPane = new javax.swing.JTextArea();
         ingredientsList = new javax.swing.JPanel();
@@ -132,17 +131,8 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(difficultyLabel)
                     .addComponent(recipeDifficultyLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
-
-        imageLabel.setIcon(recipe.getImage(300, 200)
-        );
-        imageLabel.setText("Image");
-        imageLabel.setToolTipText("");
-        imageLabel.setMaximumSize(new java.awt.Dimension(300, 200));
-        imageLabel.setMinimumSize(new java.awt.Dimension(300, 200));
-        imageLabel.setPreferredSize(new java.awt.Dimension(300, 200));
-        imageLabel.setSize(new java.awt.Dimension(300, 200));
 
         descriptionTextPane.setColumns(20);
         descriptionTextPane.setRows(5);
@@ -166,9 +156,7 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(descriptionPane, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(descriptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,9 +168,7 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
             .addGroup(layout.createSequentialGroup()
                 .addComponent(nameLabel)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descriptionPane)
@@ -196,7 +182,6 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
     private javax.swing.JScrollPane descriptionPane;
     private javax.swing.JTextArea descriptionTextPane;
     private javax.swing.JLabel difficultyLabel;
-    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JPanel ingredientsList;
     private javax.swing.JLabel nameLabel;

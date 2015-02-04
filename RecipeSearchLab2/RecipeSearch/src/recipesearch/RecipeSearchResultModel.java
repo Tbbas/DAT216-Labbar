@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package recipesearch;
+import java.util.ArrayList;
 import java.util.List;
+import se.chalmers.ait.dat215.lab2.Recipe;
 
 /**
  *
@@ -16,10 +18,23 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
     /**
      * Creates new customizer RecipeSearchResultModel
+     * @param  A list of recepies
      */
-    public RecipeSearchResultModel(List<se.chalmers.ait.dat215.lab2.Recipe> recipes) {
+    public RecipeSearchResultModel(List<Recipe> recipes) {
+        this.items = new ArrayList<RecipeSearchResultItemModel>();
         initComponents();
-        addRecipes(recipes);
+        for(Recipe r:recipes) {
+            System.out.println(r);
+        this.items.add(new RecipeSearchResultItemModel(r));
+                }
+        for(int i=0; i<5;i++) {
+            resultPane.add(items.get(i));
+        }
+        
+        
+        
+        
+        
         
         
         
@@ -27,13 +42,6 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
     
     public void setObject(Object bean) {
         this.bean = bean;
-    }
-    
-    
-    private void addRecipes(List<se.chalmers.ait.dat215.lab2.Recipe> recipes) {
-        for(int i=0;i<5;i++){
-            this.add(new RecipeSearchResultItemModel(recipes.get(i)));
-        }
     }
 
     /**
@@ -45,9 +53,9 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
-        resultPane = new javax.swing.JTabbedPane();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
+        resultPane = new javax.swing.JPanel();
 
         jButton2.setText("jButton1");
 
@@ -55,15 +63,26 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
         nextButton.setText("jButton1");
 
+        javax.swing.GroupLayout resultPaneLayout = new javax.swing.GroupLayout(resultPane);
+        resultPane.setLayout(resultPaneLayout);
+        resultPaneLayout.setHorizontalGroup(
+            resultPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+        resultPaneLayout.setVerticalGroup(
+            resultPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
+                .addComponent(resultPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -77,15 +96,16 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(124, 124, 124))))
-            .addComponent(resultPane)
+            .addComponent(resultPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private List<RecipeSearchResultItemModel> items;
+    private int indexOfCurrentRecipe;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton nextButton;
     private javax.swing.JButton previousButton;
-    private javax.swing.JTabbedPane resultPane;
+    private javax.swing.JPanel resultPane;
     // End of variables declaration//GEN-END:variables
 }
