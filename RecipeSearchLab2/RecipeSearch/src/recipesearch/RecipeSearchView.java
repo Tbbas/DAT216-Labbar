@@ -161,11 +161,15 @@ public class RecipeSearchView extends javax.swing.JFrame {
     
     //methods for setting panels
     public void setSearchResults(RecipeSearchResultModel result) {
-        if(this.result == null) {
-            this.result = result;
-            this.cardPanel.add(this.result,"Result");           
+         this.result = result;
+        (this.cardPanel.getLayout()).removeLayoutComponent(this.result);
+        if(this.recipe != null) {
+            (this.cardPanel.getLayout()).removeLayoutComponent(this.recipe);
+            this.cardPanel.add(this.result,"Result");
+            this.cardPanel.add(this.recipe,"Recipe");
+        } else {
+            this.cardPanel.add(this.result,"Result");
         }
-        this.result = result;
         revalidate();
         ((CardLayout)cardPanel.getLayout()).show(cardPanel, "Result");
         
@@ -174,8 +178,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
     
     public void setDetailedRecipe(RecipeSearchRecipeModel r) {
         this.recipe = r;
-        this.cardPanel.add(recipe);
-        ((CardLayout)cardPanel.getLayout()).next(cardPanel);
+        (this.cardPanel.getLayout()).removeLayoutComponent(this.recipe);
+        this.cardPanel.add(this.recipe, "Recipe");
+        revalidate();
+        ((CardLayout)cardPanel.getLayout()).show(cardPanel, "Recipe");
+        
     }
     
     
