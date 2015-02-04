@@ -1,5 +1,7 @@
 package recipesearch;
 
+import java.awt.CardLayout;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +15,8 @@ public class RecipeSearchView extends javax.swing.JFrame {
      */
     public RecipeSearchView() {
         initComponents();
-        this.search = new RecipeSearchSearchModel(this);
-        this.cardPanel.add(search, "Search");
+        this.search = new RecipeSearchSearchModel(this);        
+        this.cardPanel.add(search,"Search");
     }
 
     /**
@@ -29,7 +31,10 @@ public class RecipeSearchView extends javax.swing.JFrame {
         countryButtonGroup = new javax.swing.ButtonGroup();
         mainIngredientGroup = new javax.swing.ButtonGroup();
         navigationToolBar = new javax.swing.JToolBar();
-        cardPanel = new javax.swing.JTabbedPane();
+        homeButton = new javax.swing.JButton();
+        previousButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
+        cardPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -40,8 +45,39 @@ public class RecipeSearchView extends javax.swing.JFrame {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("recipesearch/resources/RecipeSearch"); // NOI18N
         setTitle(bundle.getString("Application.title")); // NOI18N
         setName("applicationFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(901, 570));
 
         navigationToolBar.setRollover(true);
+
+        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/home.png"))); // NOI18N
+        homeButton.setFocusable(false);
+        homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        homeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+        navigationToolBar.add(homeButton);
+
+        previousButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
+        navigationToolBar.add(previousButton);
+
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/forward.png"))); // NOI18N
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+        navigationToolBar.add(nextButton);
+
+        cardPanel.setPreferredSize(new java.awt.Dimension(826, 500));
+        cardPanel.setLayout(new java.awt.CardLayout());
 
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("recipesearch/resources/RecipeSearchView"); // NOI18N
         fileMenu.setText(bundle1.getString("fileMenu.text")); // NOI18N
@@ -74,19 +110,21 @@ public class RecipeSearchView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(navigationToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(441, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cardPanel))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(navigationToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(navigationToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navigationToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -100,6 +138,21 @@ public class RecipeSearchView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+       CardLayout c1 = (CardLayout)cardPanel.getLayout();       
+       c1.next(cardPanel);
+    }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
+       CardLayout c1 = (CardLayout)cardPanel.getLayout();       
+       c1.previous(cardPanel);
+    }//GEN-LAST:event_previousButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+       CardLayout c1 = (CardLayout)cardPanel.getLayout();       
+       c1.first(cardPanel);
+    }//GEN-LAST:event_homeButtonActionPerformed
+
     private RecipeSearchSearchModel search;
     private RecipeSearchResultModel result;
     private RecipeSearchRecipeModel recipe;
@@ -109,11 +162,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
     
     //methods for setting panels
     public void setSearchResults(RecipeSearchResultModel result) {
-        if(this.result == null) {
-            this.add(this.result,"Result");
-        }
-        
-        this.result = result;   
+        this.cardPanel.remove(result);
+        this.result = null;
+        this.result = result;
+        this.cardPanel.add(result);
+        ((CardLayout)cardPanel.getLayout()).next(cardPanel);
         
     }
     
@@ -123,13 +176,16 @@ public class RecipeSearchView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JTabbedPane cardPanel;
+    private javax.swing.JPanel cardPanel;
     private javax.swing.ButtonGroup countryButtonGroup;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JButton homeButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.ButtonGroup mainIngredientGroup;
     private javax.swing.JToolBar navigationToolBar;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JButton previousButton;
     // End of variables declaration//GEN-END:variables
 }

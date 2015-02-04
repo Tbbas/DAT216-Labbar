@@ -21,22 +21,72 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
      * @param  A list of recepies
      */
     public RecipeSearchResultModel(List<Recipe> recipes) {
-        this.items = new ArrayList<RecipeSearchResultItemModel>();
         initComponents();
-        for(Recipe r:recipes) {
-            System.out.println(r);
-        this.items.add(new RecipeSearchResultItemModel(r));
-                }
-        for(int i=0; i<5;i++) {
-            resultPane.add(items.get(i));
+        this.recipeBoxes = new ArrayList<RecipeSearchResultItemModel>();
+        addRecipeBoxesToList();
+        this.indexOfCurrentRecipe = 0; 
+        this.recipes = recipes;
+        displayRecipes();
+        this.previousButton.setEnabled(false);
+    }
+    public RecipeSearchResultModel() {
+        initComponents();
+    }
+    
+    /**
+     * Calculates the next set of recipes and corrects mistakes
+     */
+    public void CalculateNextRecipes() {
+        this.previousButton.setEnabled(true);
+        if(indexOfCurrentRecipe+10 >= recipes.size()) {
+            this.indexOfCurrentRecipe = recipes.size()-10;
+            this.nextButton.setEnabled(false);
+        } else {
+             indexOfCurrentRecipe +=10;
         }
+      displayRecipes();
         
+    }
+    /**
+     * Calculates the previous set of recipes and corrects mistakes
+     */
+    public void CalculatePreviousRecipes() {
+        this.nextButton.setEnabled(true);
+        if(this.indexOfCurrentRecipe -10 <0) {
+            this.indexOfCurrentRecipe = 0;
+            previousButton.setEnabled(false);
+        } else {            
+            this.indexOfCurrentRecipe -=10;
+        }
+        displayRecipes();
         
-        
-        
-        
-        
-        
+    }
+    /**
+     * Adds the recipes to the boxes
+     */
+    public void displayRecipes() {
+        int i = 0;
+        for(RecipeSearchResultItemModel r:recipeBoxes) {
+            r.setRecipe(this.recipes.get(indexOfCurrentRecipe+i));   
+            i++;
+    }
+    }
+    
+    
+    /** 
+     * Adds the recipe boxes to a list
+     */
+    public void addRecipeBoxesToList() {        
+        this.recipeBoxes.add(recipeItem1);
+        this.recipeBoxes.add(recipeItem2);
+        this.recipeBoxes.add(recipeItem3);
+        this.recipeBoxes.add(recipeItem4);
+        this.recipeBoxes.add(recipeItem5);
+        this.recipeBoxes.add(recipeItem6);
+        this.recipeBoxes.add(recipeItem7);
+        this.recipeBoxes.add(recipeItem8);
+        this.recipeBoxes.add(recipeItem9);
+        this.recipeBoxes.add(recipeItem10);     
         
     }
     
@@ -55,57 +105,156 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
         jButton2 = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
-        resultPane = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        recipeItem3 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem4 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem5 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem6 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem7 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem8 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem9 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem10 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem1 = new recipesearch.RecipeSearchResultItemModel();
+        recipeItem2 = new recipesearch.RecipeSearchResultItemModel();
 
         jButton2.setText("jButton1");
 
-        previousButton.setText("jButton1");
+        previousButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/back.png"))); // NOI18N
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
 
-        nextButton.setText("jButton1");
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recipesearch/resources/forward.png"))); // NOI18N
+        nextButton.setPreferredSize(new java.awt.Dimension(25, 25));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout resultPaneLayout = new javax.swing.GroupLayout(resultPane);
-        resultPane.setLayout(resultPaneLayout);
-        resultPaneLayout.setHorizontalGroup(
-            resultPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(recipeItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recipeItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(recipeItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recipeItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(recipeItem7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recipeItem8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(recipeItem9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recipeItem10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        resultPaneLayout.setVerticalGroup(
-            resultPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(recipeItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipeItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(recipeItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipeItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(recipeItem7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipeItem8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(recipeItem9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipeItem10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        recipeItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recipeItem1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(resultPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(recipeItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(recipeItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(recipeItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(recipeItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))))
-            .addComponent(resultPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(217, 217, 217))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(226, 226, 226))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private List<RecipeSearchResultItemModel> items;
+    private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
+        CalculatePreviousRecipes();
+    }//GEN-LAST:event_previousButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        CalculateNextRecipes();
+    }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void recipeItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItem1MouseClicked
+        
+    }//GEN-LAST:event_recipeItem1MouseClicked
+
+    private List<RecipeSearchResultItemModel> recipeBoxes;
+    private List<Recipe> recipes;
     private int indexOfCurrentRecipe;
+    private boolean hasNextRecipes;
+    private boolean hasPreviousRecipes;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextButton;
     private javax.swing.JButton previousButton;
-    private javax.swing.JPanel resultPane;
+    private recipesearch.RecipeSearchResultItemModel recipeItem1;
+    private recipesearch.RecipeSearchResultItemModel recipeItem10;
+    private recipesearch.RecipeSearchResultItemModel recipeItem2;
+    private recipesearch.RecipeSearchResultItemModel recipeItem3;
+    private recipesearch.RecipeSearchResultItemModel recipeItem4;
+    private recipesearch.RecipeSearchResultItemModel recipeItem5;
+    private recipesearch.RecipeSearchResultItemModel recipeItem6;
+    private recipesearch.RecipeSearchResultItemModel recipeItem7;
+    private recipesearch.RecipeSearchResultItemModel recipeItem8;
+    private recipesearch.RecipeSearchResultItemModel recipeItem9;
     // End of variables declaration//GEN-END:variables
 }
