@@ -7,10 +7,7 @@ package recipesearch;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import se.chalmers.ait.dat215.lab2.Recipe;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 /**
@@ -23,7 +20,8 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
     /**
      * Creates new customizer RecipeSearchResultModel
-     * @param  A list of recepies
+     * @param recipes  A list of recepies
+     * @param view The recipeView
      */
     public RecipeSearchResultModel(List<Recipe> recipes, RecipeSearchView view) {
         initComponents();
@@ -351,8 +349,7 @@ public class RecipeSearchResultModel extends javax.swing.JPanel implements java.
 
     private void recipeItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItemMouseClicked
         Recipe r = ((RecipeSearchResultItemModel)evt.getSource()).getRecipe();
-        RecipeSearchRecipeModel rModel = new RecipeSearchRecipeModel(r);
-        view.setDetailedRecipe(rModel);
+        view.setDetailedRecipe(r);
     }//GEN-LAST:event_recipeItemMouseClicked
 
     private void recipeItemEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recipeItemEntered

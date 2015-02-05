@@ -21,17 +21,31 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
     /**
      * Creates new customizer RecipeSearchRecipeModel
      */
-    public RecipeSearchRecipeModel(Recipe recipe) {
-        this.recipe = recipe;
+    public RecipeSearchRecipeModel() {
         initComponents();
-        this.imageLabel.setIcon(recipe.getImage());
-        this.ingredientTextArea.setText(recipe.getIngredients().toString());
-        this.ingredientTextArea.setLineWrap(true);
-        this.descriptionTextPane.setLineWrap(true);
+        
+        
     }
     
     public void setObject(Object bean) {
         this.bean = bean;
+    }
+    
+    
+    public void setRecipe(Recipe r) {
+        this.recipe = r;
+        this.nameLabel.setText(this.recipe.getName());
+        this.nbrOfPortionsLabel.setText(Integer.toString(this.recipe.getServings()));
+        this.recipeTimeLabel.setText(Integer.toString(this.recipe.getTime()));
+        this.recipePriceLabel.setText(Integer.toString(this.recipe.getPrice()));
+        this.recipeCouisineLabel.setText(this.recipe.getCuisine());
+        this.recipeDifficultyLabel.setText(this.recipe.getDifficulty());
+        this.descriptionTextPane.setText(this.recipe.getDescription());
+        this.imageLabel.setIcon(recipe.getImage());
+        this.ingredientTextArea.setText(recipe.getIngredients().toString());
+        this.ingredientTextArea.setLineWrap(true);
+        this.descriptionTextPane.setLineWrap(true);
+        
     }
 
     /**
@@ -64,13 +78,13 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
 
         nameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nameLabel.setText(recipe.getName());
+        nameLabel.setText("Namn");
 
         infoPanel.setBackground(new java.awt.Color(200, 200, 200));
 
         portionsLabel.setText("Antal Portioner:");
 
-        nbrOfPortionsLabel.setText(recipe.getServings() + "");
+        nbrOfPortionsLabel.setText("portioner");
 
         timeLabel.setText("Tid:");
 
@@ -80,13 +94,13 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
 
         difficultyLabel.setText("Svårighetsgrad:");
 
-        recipeTimeLabel.setText(recipe.getTime() + " minuter");
+        recipeTimeLabel.setText("tid");
 
-        recipePriceLabel.setText(recipe.getPrice() + " kr");
+        recipePriceLabel.setText("pris");
 
-        recipeCouisineLabel.setText(recipe.getCuisine());
+        recipeCouisineLabel.setText("kök");
 
-        recipeDifficultyLabel.setText(recipe.getDifficulty());
+        recipeDifficultyLabel.setText("svårighet");
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
@@ -146,7 +160,7 @@ public class RecipeSearchRecipeModel extends javax.swing.JPanel implements java.
 
         descriptionTextPane.setColumns(20);
         descriptionTextPane.setRows(5);
-        descriptionTextPane.setText(recipe.getDescription());
+        descriptionTextPane.setText("\n");
         descriptionPane.setViewportView(descriptionTextPane);
 
         jLabel1.setText("Ingredienser");

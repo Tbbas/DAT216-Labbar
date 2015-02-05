@@ -2,6 +2,7 @@ package recipesearch;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import se.chalmers.ait.dat215.lab2.Recipe;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -176,12 +177,15 @@ public class RecipeSearchView extends javax.swing.JFrame {
         
     }
     
-    public void setDetailedRecipe(RecipeSearchRecipeModel r) {
-        this.recipe = r;
-        (this.cardPanel.getLayout()).removeLayoutComponent(this.recipe);
-        this.cardPanel.add(this.recipe, "Recipe");
+    public void setDetailedRecipe(Recipe r) {
+        if(this.recipe == null) {
+            this.recipe = new RecipeSearchRecipeModel();
+            this.cardPanel.add(this.recipe, "Recipe");
+        }        
+        this.recipe.setRecipe(r);
         revalidate();
         ((CardLayout)cardPanel.getLayout()).show(cardPanel, "Recipe");
+        
         
     }
     
@@ -189,7 +193,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
    //Panels within the program
     private JPanel search;
     private JPanel result;
-    private JPanel recipe;
+    private RecipeSearchRecipeModel recipe;
     
    
     
